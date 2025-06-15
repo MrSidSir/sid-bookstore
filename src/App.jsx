@@ -1,11 +1,19 @@
-import React from 'react';
+import { Outlet } from 'react-router-dom'
+import './App.css'
+import Navbar from './components/Navbar'
 
-const App = () => {
+function App() {
   return (
-    <div className="bg-blue-500 text-white p-4 rounded-xl text-center mt-10">
-      Tailwind CSS is working!
-    </div>
-  );
-};
+    <>
+      <Navbar /> {/* ✅ Yeh actual component hai */}
+      
+      <main className='min-h-screen max-w-screen-2xl mx-auto px-4 py-6 font-primary'>
+        <Outlet />
+      </main>
+      
+      <footer>Footer</footer>
+    </>
+  )
+}
 
 export default App;

@@ -1,5 +1,9 @@
 import React from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
+import { getImgUrl } from '../../utils/getImgUrl';
+
+import  { Link } from 'react-router-dom'
+
 
 const BookCart = ({ book }) => {
   return (
@@ -8,7 +12,7 @@ const BookCart = ({ book }) => {
         <div className="sm:h-72 sm:flex-shrink-0 border rounded-md">
           <a href="/">
             <img
-              src={`assets/books/${book.coverImage}`}
+              src={`${getImgUrl(book.coverImage)}`}
               alt={book.title}
               className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
             />
@@ -16,11 +20,11 @@ const BookCart = ({ book }) => {
         </div>
 
         <div>
-          <a href="/">
+          <Link to="/">
             <h3 className="text-xl font-semibold hover:text-blue-600 mb-3">
-              {book.title}
+                {book.title}
             </h3>
-          </a>
+          </Link>
           <p className="text-gray-600 mb-5">{book.description}</p>
           <p className="font-medium mb-5">
             ${book.newPrice} <span className="line-through font-normal ml-2">${book.oldPrice}</span>

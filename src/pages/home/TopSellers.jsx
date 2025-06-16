@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import BookCart from '../books/BookCart';
-
-
-
+import React, { useState, useEffect } from 'react';
+import BookCart from '../books/BookCard';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,44 +11,40 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-
 const categories = ["Choose a genre", "Business", "Fiction", "Horror", "Adventure"];
-
 
 const TopSellers = () => {
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Choose a genre");
 
- useEffect(() => {
-  fetch("books.json")
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error("Failed to fetch books");
-      }
-      return res.json();
-    })
-    .then((data) => setBooks(data))
-    .catch((err) => console.error(err.message));
-}, []);
+  useEffect(() => {
+    fetch("books.json")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch books");
+        }
+        return res.json();
+      })
+      .then((data) => setBooks(data))
+      .catch((err) => console.error(err.message));
+  }, []);
 
-
-const filteredBooks =
-  selectedCategory === "Choose a genre"
-    ? books
-    : books.filter(book => book.category.toLowerCase() === selectedCategory.toLowerCase());
-
+  const filteredBooks =
+    selectedCategory === "Choose a genre"
+      ? books
+      : books.filter(book => book.category.toLowerCase() === selectedCategory.toLowerCase());
 
   return (
     <div className='py-10'>
       <h2 className='text-3xl font-semibold mb-6'>Top Sellers</h2>
 
-      {/* category filtering */}
+      {/* Category filtering */}
       <div className='mb-8 flex items-center'>
         <select
           onChange={(e) => setSelectedCategory(e.target.value)}
           name="category"
           id="category"
-          className='border bg-[#EAEAEA] border-gray-300 rounded-md px-4 py-2 focus:outline-none '
+          className='border bg-[#EAEAEA] border-gray-300 rounded-md px-4 py-2 focus:outline-none'
         >
           {categories.map((category, index) => (
             <option key={index} value={category}>
@@ -60,10 +53,12 @@ const filteredBooks =
           ))}
         </select>
       </div>
-   <Swiper
+
+      {/* Swiper carousel for filtered books */}
+      <Swiper
         slidesPerView={1}
         spaceBetween={30}
-       navigation={true}
+        navigation={true}
         breakpoints={{
           640: {
             slidesPerView: 2,
@@ -76,36 +71,21 @@ const filteredBooks =
           1024: {
             slidesPerView: 2,
             spaceBetween: 50,
-            
           },
           1180: {
-          slidesPerView:3,
-          spaceBetween: 50,
-          
-          
-        }
-
-         }}
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+        }}
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-{/* Show filtered books */}
-      {
-        filteredBooks.length > 0 && filteredBooks.map((book, index) => (
-<SwiperSlide key={index}>
-  <BookCart  book={book} />
-</SwiperSlide>
-      ))
-}
-       
+        {filteredBooks.length > 0 && filteredBooks.map((book, index) => (
+          <SwiperSlide key={index}>
+            <BookCart book={book} />
+          </SwiperSlide>
+        ))}
       </Swiper>
-    
-      {/* Show filtered books */}
-      {
-        filteredBooks.map((book, index) => (
-          <BookCart key={index} book={book}/>
-        ))
-      }
     </div>
   );
 };

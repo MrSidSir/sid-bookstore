@@ -4,6 +4,7 @@ import TopSellers from './TopSellers'
 import Recommened from './recommened';
 import News from './News';
 
+
 const Home = () => {
   return (
     <>

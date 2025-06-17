@@ -16,7 +16,7 @@ const navigation = [
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const currentUser = true; // TODO: Replace with real auth logic
+  const currentUser = false; // TODO: Replace with real auth logic
 
   const handleLogOut = () => {
     // TODO: Replace with real logout logic

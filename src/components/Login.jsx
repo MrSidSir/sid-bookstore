@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 // import logo from '../assets/footer-logo.png'; // Uncomment if you use logo
 
 const Login = () => {
+  
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 

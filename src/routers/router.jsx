@@ -4,6 +4,7 @@ import Home from "../pages/home/Home.jsx";
 import Login from "../components/Login";
 import Register from "../components/Register.jsx";
 import CartPage from "../pages/books/CartPage"; // ✅ Path must be correct
+import CheckoutPage from "../pages/books/CheckoutPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <CartPage />, // ✅ Must be defined and imported
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage/>, // ✅ Must be defined and imported
       },
     ],
   },

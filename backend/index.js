@@ -25,8 +25,12 @@ console.log("db url", process.env.DB_URL);
 app.use(express.json());
 
 // ➤ Frontend (localhost:5173) ko CORS allow karne ke liye
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['http://localhost:5173', 'https://sid-bookstore-w5nr.vercel.app/'];
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://sid-bookstore-w5nr.vercel.app/'],
+  origin: allowedOrigins,
   credentials: true
 }));
 

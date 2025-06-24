@@ -1,5 +1,7 @@
 const getBaseUrl = () => {
-  return (import.meta.env.VITE_API_URL || "https://sid-bookstore-backend-1.onrender.com").replace(/\/$/, "");
+  // Always remove trailing slash if present
+  const url = import.meta.env.VITE_API_URL || "https://sid-bookstore.onrender.com";
+  return url.replace(/\/$/, "");
 };
 
 export default getBaseUrl;
